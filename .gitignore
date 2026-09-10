@@ -1,0 +1,12 @@
+.env
+/jellyfin/config
+/jellyfin/cache
+/navidrome/navidrome_data
+/nextcloud/db_data
+/nextcloud/nextcloud_data
+/nginx/nginx/certs
+/pihole/etc-pihole
+/portainer/portainer_data
+/tailscale/tailscale-nginx
+/vaultwarden/vaultwarden_data
+/wontuse
