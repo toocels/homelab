@@ -1,4 +1,7 @@
 .env
+/beszel/beszel_data
+/beszel/beszel_socket
+/beszel/beszel_agent_data
 /jellyfin/config
 /jellyfin/cache
 /navidrome/navidrome_data
@@ -6,6 +9,7 @@
 /nextcloud/nextcloud_data
 /nginx/nginx/certs
 /pihole/etc-pihole
+/pihole/etc-dnsmasq.d
 /portainer/portainer_data
 /tailscale/tailscale-nginx
 /vaultwarden/vaultwarden_data

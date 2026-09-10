@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Welcome to nginx!</title>
   <link rel="icon" type="image/svg+xml" href="https://self-hosted.directory/logo.svg">
   <style>
@@ -10,8 +11,10 @@
     }
 
     body {
-      width: 40em;
+      max-width: 40em;
       margin: 0 auto;
+      padding: 0 1em;
+      box-sizing: border-box;
       font-family: Tahoma, Verdana, Arial, sans-serif;
     }
 
@@ -34,6 +37,22 @@
 
     a.button:hover {
       background-color: rgba(128, 128, 128, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 15px;
+      }
+
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -68,6 +87,7 @@
     <a class="button" href="https://portainer.${h}">Portainer</a>
     <a class="button" href="https://navidrome.${h}">Navidrome</a>
     <a class="button" href="https://rewind.${h}">Rewind</a>
+    <a class="button" href="https://beszel.${h}">Beszel</a>
   `);
     </script>
   </div>
