@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to nginx!</title>
+  <link rel="icon" type="image/svg+xml" href="https://self-hosted.directory/logo.svg">
+  <style>
+    html {
+      color-scheme: light dark;
+    }
+
+    body {
+      width: 40em;
+      margin: 0 auto;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    a.button {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid #888;
+      border-radius: 6px;
+      color: inherit;
+    }
+
+    a.button:hover {
+      background-color: rgba(128, 128, 128, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to nginx!</h1>
+  <p>If you see this page, nginx is successfully installed and working.
+    Further configuration is required for the web server, reverse proxy,
+    API gateway, load balancer, content cache, or other features.</p>
+
+  <p>For online documentation and support please refer to
+    <a href="https://nginx.org/">nginx.org</a>.<br />
+    To engage with the community please visit
+    <a href="https://community.nginx.org/">community.nginx.org</a>.<br />
+    For enterprise grade support, professional services, additional
+    security features and capabilities please refer to
+    <a href="https://f5.com/nginx">f5.com/nginx</a>.
+  </p>
+
+  <p><em>Thank you for using nginx.</em></p>
+
+  <div class="grid">
+    <script>
+      const h = location.hostname;
+
+      document.write(`
+    <a class="button" href="https://jellyfin.${h}">Jellyfin</a>
+    <a class="button" href="https://nextcloud.${h}">Nextcloud</a>
+    <a class="button" href="https://pihole.${h}/admin">Pi-hole</a>
+    <a class="button" href="https://vaultwarden.${h}">Vaultwarden</a>
+    <a class="button" href="https://immich.${h}">Immich</a>
+    <a class="button" href="https://portainer.${h}">Portainer</a>
+    <a class="button" href="https://navidrome.${h}">Navidrome</a>
+    <a class="button" href="https://rewind.${h}">Rewind</a>
+  `);
+    </script>
+  </div>
+
+</body>
+
+</html>

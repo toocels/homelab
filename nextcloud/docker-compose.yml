@@ -1,0 +1,37 @@
+services:
+  db:
+    image: mariadb
+    container_name: nextcloud_db
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+    networks:
+      - homelab
+
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    # ports:
+    #  - "127.0.0.1:80:80"
+    links:
+      - db
+    volumes:
+      - ./nextcloud_data:/var/www/html
+    restart: always
+    environment:
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_HOST: nextcloud_db
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

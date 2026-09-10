@@ -1,0 +1,19 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    # ports:
+    #  - "127.0.0.1:80:80"
+    volumes:
+      - ./vaultwarden_data:/data
+    environment:
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
+      WEBSOCKET_ENABLED: "true"
+      SIGNUPS_ALLOWED: "true"
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

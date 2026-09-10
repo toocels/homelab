@@ -1,0 +1,37 @@
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: always
+    # ports:
+    #  - "127.0.0.1:4533:4533"
+    environment:
+      ND_SCANINTERVAL: 1h
+      ND_LOGLEVEL: info
+      ND_ENABLEINSIGHTSCOLLECTOR: "false"
+    volumes:
+      - ./navidrome_data:/data
+      - /mnt/Storage/ie_big/music:/music:ro
+    networks:
+      - homelab
+
+  rewind:
+    image: bernardogiordano/rewind:latest
+    container_name: rewind
+    restart: always
+    # ports:
+    #  - "127.0.0.1:4000:4000"
+    environment:
+      NAVIDROME_URL: http://navidrome:4533
+      DB_PATH: /data/navidrome.db
+      SESSION_SECRET: ${REWIND_SESSION_SECRET}
+    volumes:
+      - ./navidrome_data:/data:ro
+    networks:
+      - homelab
+    depends_on:
+      - navidrome
+
+networks:
+  homelab:
+    external: true

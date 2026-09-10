@@ -1,0 +1,27 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    devices:
+      - /dev/dri:/dev/dri
+    # ports:
+    #  - "127.0.0.1:8096:8096/tcp"
+    #  - "127.0.0.1:8920:8920/tcp"
+    #  - "127.0.0.1:7359:7359/udp"
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - /home/toocels/ie_big/movies:/media/movies:ro
+      - /home/toocels/ie_big/series:/media/series:ro
+      - /home/toocels/ie/music:/media/songs:ro
+    environment:
+      - TZ=Asia/Kolkata
+      # Optional: Set the external URL if you use a reverse proxy
+      # - JELLYFIN_PublishedServerUrl=
+    restart: always
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
