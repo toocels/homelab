@@ -13,7 +13,6 @@ Docker Compose stacks for my homelab. One directory per service, each with its o
 | navidrome / rewind | Music server + web player | 4533, 4000 | via nginx → `navidrome.*`, `rewind.*` |
 | nextcloud / db | File sync & storage | 80 (nextcloud); db is internal-only | via nginx → `nextcloud.*` |
 | pihole | Network-wide DNS + ad-blocking | 53/tcp+udp (DNS), 80 (webui) | DNS bound directly to host `0.0.0.0:53`; webui via nginx → `pihole.*` |
-| portainer | Docker management UI | 9000 | via nginx → `portainer.*` |
 | vaultwarden | Password manager (Bitwarden-compatible) | 80 | via nginx → `vaultwarden.*` |
 | tailscale | VPN mesh access into the homelab | – | `network_mode: host`, not proxied (not HTTP) |
 
