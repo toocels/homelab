@@ -11,7 +11,6 @@
 /nginx/nginx/certs
 /pihole/etc-dnsmasq.d
 /pihole/etc-pihole
-/portainer/portainer_data
 /tailscale/tailscale-nginx
 /vaultwarden/vaultwarden_data
 /wontuse
