@@ -3,7 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to nginx!</title>
+  <title>My Homelab</title>
   <link rel="icon" type="image/svg+xml" href="https://self-hosted.directory/logo.svg">
   <style>
     html {
@@ -26,17 +26,27 @@
     }
 
     a.button {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 10px;
       text-align: center;
       text-decoration: none;
       border: 1px solid #888;
       border-radius: 6px;
       color: inherit;
+      transition: transform 0.3s;
+    }
+
+    a.button img {
+      width: 20px;
+      height: 20px;
     }
 
     a.button:hover {
       background-color: rgba(128, 128, 128, 0.2);
+      transform: scale(1.05);
     }
 
     @media (max-width: 600px) {
@@ -58,36 +68,24 @@
 </head>
 
 <body>
-  <h1>Welcome to nginx!</h1>
-  <p>If you see this page, nginx is successfully installed and working.
-    Further configuration is required for the web server, reverse proxy,
-    API gateway, load balancer, content cache, or other features.</p>
-
-  <p>For online documentation and support please refer to
-    <a href="https://nginx.org/">nginx.org</a>.<br />
-    To engage with the community please visit
-    <a href="https://community.nginx.org/">community.nginx.org</a>.<br />
-    For enterprise grade support, professional services, additional
-    security features and capabilities please refer to
-    <a href="https://f5.com/nginx">f5.com/nginx</a>.
-  </p>
-
-  <p><em>Thank you for using nginx.</em></p>
+  <h1>Welcome to my homelab</h1>
+  <p>Click any of these services to get started and access them.</p>
 
   <div class="grid">
     <script>
       const h = location.hostname;
 
       document.write(`
-    <a class="button" href="https://jellyfin.${h}">Jellyfin</a>
-    <a class="button" href="https://nextcloud.${h}">Nextcloud</a>
-    <a class="button" href="https://pihole.${h}/admin">Pi-hole</a>
-    <a class="button" href="https://vaultwarden.${h}">Vaultwarden</a>
-    <a class="button" href="https://immich.${h}">Immich</a>
-    <a class="button" href="https://portainer.${h}">Portainer</a>
-    <a class="button" href="https://navidrome.${h}">Navidrome</a>
-    <a class="button" href="https://rewind.${h}">Rewind</a>
-    <a class="button" href="https://beszel.${h}">Beszel</a>
+    <a class="button" href="https://jellyfin.${h}"><img src="icons/jellyfin.ico"> Jellyfin</a>
+    <a class="button" href="https://nextcloud.${h}"><img src="icons/nextcloud.png"> Nextcloud</a>
+    <a class="button" href="https://pihole.${h}/admin"><img src="icons/pihole.png"> Pi-hole</a>
+    <a class="button" href="https://vaultwarden.${h}"><img src="icons/vaultwarden.svg"> Vaultwarden</a>
+    <a class="button" href="https://immich.${h}"><img src="icons/immich.ico"> Immich</a>
+    <a class="button" href="https://portainer.${h}"><img src="icons/portainer.png"> Portainer</a>
+    <a class="button" href="https://navidrome.${h}"><img src="icons/navidrome.ico"> Navidrome</a>
+    <a class="button" href="https://rewind.${h}"><img src="icons/rewind.ico"> Rewind</a>
+    <a class="button" href="https://beszel.${h}"><img src="icons/beszel.svg"> Beszel</a>
+    <a class="button" href="https://dockge.${h}"><img src="icons/dockge.svg"> Dockge</a>
   `);
     </script>
   </div>

@@ -1,0 +1,19 @@
+services:
+  dockge:
+    image: louislam/dockge:1
+    container_name: dockge
+    restart: unless-stopped
+    # ports:
+    #   - "127.0.0.1:5001:5001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./dockge_data:/app/data
+      - ../:/opt/stacks:ro
+    environment:
+      DOCKGE_STACKS_DIR: /opt/stacks
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

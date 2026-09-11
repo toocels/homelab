@@ -6,7 +6,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx:/etc/nginx
+      - ./nginx:/etc/nginx:ro
     restart: always
     networks:
       - homelab
