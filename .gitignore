@@ -3,6 +3,8 @@
 /beszel/beszel_data
 /beszel/beszel_socket
 /dockge/dockge_data
+/immich/library
+/immich/postgres
 /jellyfin/cache
 /jellyfin/config
 /navidrome/navidrome_data
@@ -14,3 +16,5 @@
 /tailscale/tailscale-nginx
 /vaultwarden/vaultwarden_data
 /wontuse
+/toocels-web
+/navidrome/symfonium-backup-20260911_231532.symfbkpz
