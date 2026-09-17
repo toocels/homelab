@@ -10,6 +10,7 @@ services:
       - TS_AUTH_ONCE=true
     volumes:
       - ./tailscale-nginx/state:/var/lib/tailscale
+      - /lib/modules:/lib/modules:ro
     devices:
       - /dev/net/tun:/dev/net/tun
     cap_add:
