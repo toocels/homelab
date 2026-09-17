@@ -3,13 +3,17 @@ services:
     container_name: nginx
     image: nginx:latest
     ports:
-      - "80:80"
-      - "443:443"
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+      - "100.70.208.65:80:80"
+      - "100.70.208.65:443:443"
+
     volumes:
       - ./nginx:/etc/nginx:ro
     restart: always
     networks:
-      - homelab
+      homelab:
+        ipv4_address: 192.168.69.7
 
 networks:
   homelab:
