@@ -2,18 +2,24 @@ services:
   nginx:
     container_name: nginx
     image: nginx:latest
-    ports:
-      - "127.0.0.1:80:80"
-      - "127.0.0.1:443:443"
-      - "100.70.208.65:80:80"
-      - "100.70.208.65:443:443"
+    # ports:
+    #   - "127.0.0.1:80:80"
+    #   - "127.0.0.1:443:443"
+    #   - "100.70.208.65:80:80"
+    #   - "100.70.208.65:443:443"
+    #   - "443:443"
 
     volumes:
       - ./nginx:/etc/nginx:ro
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     networks:
       homelab:
-        ipv4_address: 192.168.69.7
+        ipv4_address: 192.168.69.200
 
 networks:
   homelab:

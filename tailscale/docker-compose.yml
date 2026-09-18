@@ -8,6 +8,10 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_USERSPACE=false
       - TS_AUTH_ONCE=true
+      - TS_EXTRA_ARGS=--advertise-routes=192.168.69.0/24
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv6.conf.all.forwarding=1
     volumes:
       - ./tailscale-nginx/state:/var/lib/tailscale
       - /lib/modules:/lib/modules:ro
@@ -17,4 +21,14 @@ services:
       - net_admin
       - net_raw
     restart: always
-    network_mode: host
+    healthcheck:
+      test: ["CMD", "tailscale", "status"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
