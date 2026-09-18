@@ -1,0 +1,25 @@
+services:
+  minecraft:
+    image: eclipse-temurin:25-jre-alpine
+    container_name: minecraft
+    restart: always
+    working_dir: /data
+    command: ["java", "-Xmx4G", "-jar", "server.jar", "nogui"]
+    stdin_open: true
+    tty: true
+    ports:
+      - "25565:25565"
+    volumes:
+      - ./minecraft_data:/data
+    networks:
+      - homelab
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 25565 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+networks:
+  homelab:
+    external: true
