@@ -25,6 +25,14 @@
       margin-top: 20px;
     }
 
+    .grid hr {
+      grid-column: 1 / -1;
+      width: 100%;
+      border: none;
+      border-top: 1px solid #888;
+      margin: 6px 0;
+    }
+
     a.button {
       display: flex;
       align-items: center;
@@ -75,6 +83,14 @@
     <script>
       const h = location.hostname;
 
+      function copyAddr(el, text) {
+        navigator.clipboard.writeText(text);
+        const node = el.lastChild;
+        const original = node.textContent;
+        node.textContent = ' Copied!';
+        setTimeout(() => { node.textContent = original; }, 1200);
+      }
+
       document.write(`
     <a class="button" href="https://jellyfin.${h}"><img src="icons/jellyfin.ico"> Jellyfin</a>
     <a class="button" href="https://nextcloud.${h}"><img src="icons/nextcloud.png"> Nextcloud</a>
@@ -87,6 +103,10 @@
     <a class="button" href="https://dockge.${h}"><img src="icons/dockge.svg"> Dockge</a>
     <a class="button" href="https://toocels-web.${h}"><img src="icons/toocels-web.png"> Toocels Web</a>
     <a class="button" href="https://wireguard.${h}"><img src="icons/wireguard.svg"> WireGuard</a>
+    <hr>
+    <a class="button" href="javascript:void(0)" onclick="copyAddr(this,'${h}:25565')"><img src="icons/minecraft.svg"> Minecraft (copy address)</a>
+    <a class="button" href="javascript:void(0)" onclick="copyAddr(this,'${h}:51820')"><img src="icons/wireguard.svg"> WireGuard endpoint (copy)</a>
+    <a class="button" href="javascript:void(0)" onclick="copyAddr(this,'${h}:53')"><img src="icons/pihole.png"> Pi-hole DNS (copy)</a>
   `);
     </script>
   </div>
