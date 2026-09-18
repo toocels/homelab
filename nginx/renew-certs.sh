@@ -18,7 +18,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CERTS_DIR="${SCRIPT_DIR}/nginx/certs"
 ENV_FILE="${SCRIPT_DIR}/.env"
-DUCKDNS_SUBDOMAINS=("toocels" "toocelsts")   # the "domains=" values duckdns.org/spec.jsp expects
+DUCKDNS_SUBDOMAINS=("toocels" "toocelsvpn")   # the "domains=" values duckdns.org/spec.jsp expects
 HOOK_DIR="/etc/letsencrypt/duckdns"
 TOKEN_FILE="${HOOK_DIR}/token"
 AUTH_HOOK="${HOOK_DIR}/auth.sh"
@@ -41,7 +41,7 @@ cat > "$AUTH_HOOK" <<EOF
 set -e
 TOKEN=\$(cat "$TOKEN_FILE")
 case "\$CERTBOT_DOMAIN" in
-    *.toocelsts.duckdns.org|toocelsts.duckdns.org) SUB="toocelsts" ;;
+    *.toocelsvpn.duckdns.org|toocelsvpn.duckdns.org) SUB="toocelsvpn" ;;
     *.toocels.duckdns.org|toocels.duckdns.org)     SUB="toocels" ;;
     *) echo "no duckdns subdomain mapped for \$CERTBOT_DOMAIN" >&2; exit 1 ;;
 esac
@@ -54,7 +54,7 @@ cat > "$CLEANUP_HOOK" <<EOF
 set -e
 TOKEN=\$(cat "$TOKEN_FILE")
 case "\$CERTBOT_DOMAIN" in
-    *.toocelsts.duckdns.org|toocelsts.duckdns.org) SUB="toocelsts" ;;
+    *.toocelsvpn.duckdns.org|toocelsvpn.duckdns.org) SUB="toocelsvpn" ;;
     *.toocels.duckdns.org|toocels.duckdns.org)     SUB="toocels" ;;
     *) exit 0 ;;
 esac
@@ -91,7 +91,7 @@ issue() {
     chown "$(stat -c '%U:%G' "$CERTS_DIR")" "${dest_dir}/fullchain.pem" "${dest_dir}/privkey.pem"
 }
 
-issue "toocels.duckdns.org" "toocels.duckdns.org,*.toocels.duckdns.org,toocelsts.duckdns.org,*.toocelsts.duckdns.org" "${CERTS_DIR}/toocels.duckdns.org"
+issue "toocels.duckdns.org" "toocels.duckdns.org,*.toocels.duckdns.org,toocelsvpn.duckdns.org,*.toocelsvpn.duckdns.org" "${CERTS_DIR}/toocels.duckdns.org"
 
 shred -u "$TOKEN_FILE" 2>/dev/null || rm -f "$TOKEN_FILE"
 

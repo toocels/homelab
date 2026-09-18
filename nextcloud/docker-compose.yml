@@ -13,6 +13,11 @@ services:
       MYSQL_USER: nextcloud
     networks:
       - homelab
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
   nextcloud:
     image: nextcloud
@@ -31,6 +36,11 @@ services:
       MYSQL_HOST: nextcloud_db
     networks:
       - homelab
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1/status.php"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
 networks:
   homelab:
