@@ -7,8 +7,8 @@ services:
     command: ["java", "-Xmx4G", "-jar", "server.jar", "nogui"]
     stdin_open: true
     tty: true
-    ports:
-      - "25565:25565"
+    # ports:
+    #   - "25565:25565"
     volumes:
       - ./minecraft_data:/data
     networks:
