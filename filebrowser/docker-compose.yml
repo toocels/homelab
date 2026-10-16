@@ -13,6 +13,19 @@ services:
     networks:
       - homeharbour
 
+  samba:
+    image: dperson/samba
+    container_name: samba
+    command: '-u "${SAMBA_USER};${SAMBA_PASSWORD}" -p -s "data;/share;yes;no;no;${SAMBA_USER};${SAMBA_USER};${SAMBA_USER}"'
+    ports:
+      - "445:445"
+    #   - "139:139"
+    volumes:
+      - ./data:/share
+    restart: always
+    networks:
+      - homeharbour
+
 networks:
   homeharbour:
     external: true
