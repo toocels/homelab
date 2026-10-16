@@ -9,7 +9,7 @@ services:
       - ./beszel_data:/beszel_data
       - ./beszel_socket:/beszel_socket
     networks:
-      - homelab
+      - homeharbour
     healthcheck:
       test: ["CMD", "/beszel", "health", "--url=http://127.0.0.1:8090"]
       interval: 30s
@@ -17,20 +17,24 @@ services:
       retries: 3
 
   beszel-agent:
-    image: henrygd/beszel-agent:latest
+    image: henrygd/beszel-agent-intel
     container_name: beszel-agent
     restart: unless-stopped
+    network_mode: host
+    privileged: true
+    devices:
+      - /dev/dri/card1:/dev/dri/card1
     volumes:
       - ./beszel_agent_data:/var/lib/beszel-agent
       - ./beszel_socket:/beszel_socket
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/rootfs:ro
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket:ro
+      - /run/systemd/private:/run/systemd/private:ro
     environment:
       LISTEN: /beszel_socket/beszel.sock
-      HUB_URL: http://beszel:8090
-      TOKEN: ${BESZEL_AGENT_TOKEN}
       KEY: ${BESZEL_AGENT_KEY}
-    networks:
-      - homelab
+      FILESYSTEM: /rootfs
     healthcheck:
       test: ["CMD", "/agent", "health"]
       interval: 30s
@@ -38,5 +42,5 @@ services:
       retries: 3
 
 networks:
-  homelab:
+  homeharbour:
     external: true

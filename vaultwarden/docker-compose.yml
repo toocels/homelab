@@ -12,7 +12,7 @@ services:
       WEBSOCKET_ENABLED: "true"
       SIGNUPS_ALLOWED: "true"
     networks:
-      - homelab
+      - homeharbour
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1/alive"]
       interval: 30s
@@ -20,5 +20,5 @@ services:
       retries: 3
 
 networks:
-  homelab:
+  homeharbour:
     external: true

@@ -3,13 +3,16 @@
 /beszel/beszel_data
 /beszel/beszel_socket
 /dockge/dockge_data
+/filebrowser/data
+/filebrowser/database
+/filebrowser/config
 /immich/library
 /immich/postgres
 /jellyfin/cache
 /jellyfin/config
 /navidrome/navidrome_data
-/nextcloud/db_data
-/nextcloud/nextcloud_data
+/navidrome/*.symfbkpz
+/navidrome/as-*.json
 /nginx/nginx/certs
 /pihole/etc-dnsmasq.d
 /pihole/etc-pihole
@@ -17,7 +20,5 @@
 /vaultwarden/vaultwarden_data
 /wontuse
 /toocels-web
-/navidrome/symfonium-backup-20260911_231532.symfbkpz
 /wireguard/etc_wireguard
 /wireguard/modules
-/minecraft/minecraft_data

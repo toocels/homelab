@@ -92,19 +92,17 @@
       }
 
       document.write(`
-    <a class="button" href="https://jellyfin.${h}"><img src="icons/jellyfin.ico"> Jellyfin</a>
-    <a class="button" href="https://nextcloud.${h}"><img src="icons/nextcloud.png"> Nextcloud</a>
-    <a class="button" href="https://pihole.${h}/admin"><img src="icons/pihole.png"> Pi-hole</a>
-    <a class="button" href="https://vaultwarden.${h}"><img src="icons/vaultwarden.svg"> Vaultwarden</a>
-    <a class="button" href="https://immich.${h}"><img src="icons/immich.ico"> Immich</a>
-    <a class="button" href="https://navidrome.${h}"><img src="icons/navidrome.ico"> Navidrome</a>
-    <a class="button" href="https://rewind.${h}"><img src="icons/rewind.ico"> Rewind</a>
     <a class="button" href="https://beszel.${h}"><img src="icons/beszel.svg"> Beszel</a>
     <a class="button" href="https://dockge.${h}"><img src="icons/dockge.svg"> Dockge</a>
-    <a class="button" href="https://toocels-web.${h}"><img src="icons/toocels-web.png"> Toocels Web</a>
+    <a class="button" href="https://filebrowser.${h}"><img src="icons/filebrowser.svg"> Filebrowser</a>
+    <a class="button" href="https://immich.${h}"><img src="icons/immich.ico"> Immich</a>
+    <a class="button" href="https://jellyfin.${h}"><img src="icons/jellyfin.ico"> Jellyfin</a>
+    <a class="button" href="https://navidrome.${h}"><img src="icons/navidrome.ico"> Navidrome</a>
+    <a class="button" href="https://pihole.${h}/admin"><img src="icons/pihole.png"> Pi-hole</a>
+    <a class="button" href="https://rewind.${h}"><img src="icons/rewind.ico"> Rewind</a>
+    <a class="button" href="https://vaultwarden.${h}"><img src="icons/vaultwarden.svg"> Vaultwarden</a>
     <a class="button" href="https://wireguard.${h}"><img src="icons/wireguard.svg"> WireGuard</a>
     <hr>
-    <a class="button" href="javascript:void(0)" onclick="copyAddr(this,'${h}:25565')"><img src="icons/minecraft.svg"> Minecraft (copy address)</a>
     <a class="button" href="javascript:void(0)" onclick="copyAddr(this,'${h}:51820')"><img src="icons/wireguard.svg"> WireGuard endpoint (copy)</a>
     <a class="button" href="javascript:void(0)" onclick="copyAddr(this,'${h}:53')"><img src="icons/pihole.png"> Pi-hole DNS (copy)</a>
   `);

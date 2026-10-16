@@ -8,7 +8,7 @@ services:
       - /lib/modules:/lib/modules:ro
     ports:
       - "51820:51820/udp"
-      # 51821 (webui) not bound to host — reachable only via nginx on the homelab network
+      # 51821 (webui) not bound to host — reachable only via nginx on the homeharbour network
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -19,8 +19,8 @@ services:
       net.ipv6.conf.all.forwarding: 1
       net.ipv6.conf.default.forwarding: 1
     networks:
-      - homelab
+      - homeharbour
 
 networks:
-  homelab:
+  homeharbour:
     external: true

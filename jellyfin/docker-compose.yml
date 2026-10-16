@@ -13,14 +13,14 @@ services:
       - ./cache:/cache
       - /home/toocels/ie_big/movies:/media/movies:ro
       - /home/toocels/ie_big/series:/media/series:ro
-      - /home/toocels/ie/music:/media/songs:ro
+      - /home/toocels/ie/songs:/media/songs:ro
     environment:
       - TZ=Asia/Kolkata
       # Optional: Set the external URL if you use a reverse proxy
       # - JELLYFIN_PublishedServerUrl=
     restart: always
     networks:
-      - homelab
+      - homeharbour
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8096/health"]
       interval: 30s
@@ -28,5 +28,5 @@ services:
       retries: 3
 
 networks:
-  homelab:
+  homeharbour:
     external: true
