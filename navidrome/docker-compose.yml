@@ -9,11 +9,12 @@ services:
       ND_SCANINTERVAL: 1h
       ND_LOGLEVEL: info
       ND_ENABLEINSIGHTSCOLLECTOR: "false"
+      ND_DEEZER_ENABLED: "false"
     volumes:
       - ./navidrome_data:/data
       - /mnt/Storage/ie_big/music:/music:ro
     networks:
-      - homelab
+      - homeharbour
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:4533/ping"]
       interval: 30s
@@ -33,7 +34,7 @@ services:
     volumes:
       - ./navidrome_data:/data:ro
     networks:
-      - homelab
+      - homeharbour
     depends_on:
       - navidrome
     healthcheck:
@@ -43,5 +44,5 @@ services:
       retries: 3
 
 networks:
-  homelab:
+  homeharbour:
     external: true

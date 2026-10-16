@@ -12,7 +12,7 @@ services:
     environment:
       DOCKGE_STACKS_DIR: /mnt/Storage/ie/programming/dockers
     networks:
-      - homelab
+      - homeharbour
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:5001/"]
       interval: 30s
@@ -20,5 +20,5 @@ services:
       retries: 3
 
 networks:
-  homelab:
+  homeharbour:
     external: true

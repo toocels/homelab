@@ -3,6 +3,8 @@ services:
     container_name: nginx
     image: nginx:latest
     # ports:
+    #   - "0.0.0.0:80:80"
+    #   - "0.0.0.0:443:443"
     #   - "127.0.0.1:80:80"
     #   - "127.0.0.1:443:443"
     #   - "100.70.208.65:80:80"
@@ -18,9 +20,9 @@ services:
       timeout: 5s
       retries: 3
     networks:
-      homelab:
+      homeharbour:
         ipv4_address: 192.168.69.200
 
 networks:
-  homelab:
+  homeharbour:
     external: true

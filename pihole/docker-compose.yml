@@ -18,8 +18,8 @@ services:
       - NET_ADMIN
     restart: always
     networks:
-      - homelab
+      - homeharbour
 
 networks:
-  homelab:
+  homeharbour:
     external: true

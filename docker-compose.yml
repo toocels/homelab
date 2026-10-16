@@ -1,6 +1,6 @@
 networks:
-  homelab:
-    name: homelab
+  homeharbour:
+    name: homeharbour
     driver: bridge
     ipam:
       config:
