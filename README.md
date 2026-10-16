@@ -10,10 +10,11 @@ Docker Compose stacks for my homelab. One directory per service, each with its o
 | dockge | Stack management UI | 5001 | via nginx → `dockge.*` |
 | beszel / beszel-agent | Server + container monitoring | 8090 (hub) | hub via nginx → `beszel.*`; agent on `homeharbour` |
 | filebrowser | Web file manager | 80 | via nginx → `filebrowser.*` |
+| samba | SMB share of filebrowser's `./data` | 445/tcp | bound directly to host `0.0.0.0:445`, also reachable via nginx stream proxy |
 | immich | Photo/video backup & management | 2283 | via nginx → `immich.*` |
 | jellyfin | Media server | 8096/tcp, 8920/tcp, 7359/udp | via nginx → `jellyfin.*` |
 | navidrome / rewind | Music server + web player | 4533, 4000 | via nginx → `navidrome.*`, `rewind.*` |
-| pihole | Network-wide DNS + ad-blocking | 53/tcp+udp (DNS), 80 (webui) | DNS bound directly to host `0.0.0.0:53`; webui via nginx → `pihole.*` |
+| pihole | Network-wide DNS + ad-blocking | 53/tcp+udp (DNS), 80 (webui) | DNS bound directly to host `0.0.0.0:53`, also reachable via nginx stream proxy (tcp/53 only); webui via nginx → `pihole.*` |
 | vaultwarden | Password manager (Bitwarden-compatible) | 80 | via nginx → `vaultwarden.*` |
 | wireguard | VPN server (wg-easy) | 51820/udp | UDP bound directly to host `0.0.0.0:51820`; webui via nginx → `wireguard.*` |
 | tailscale | VPN mesh access into the homelab | – | `network_mode: host`, not proxied (not HTTP) |
@@ -32,5 +33,7 @@ Docker Compose stacks for my homelab. One directory per service, each with its o
   - `pihole` — DNS (53/tcp+udp) needs to be reachable directly by every device on the LAN.
   - `tailscale` — needs `network_mode: host` + `/dev/net/tun` to run its own VPN interface.
   - `wireguard` — the WireGuard protocol isn't HTTP, so it binds host port 51820/udp directly instead of going through nginx (its webui still goes through nginx).
+  - `samba` — the SMB protocol isn't HTTP either, so it binds host port 445/tcp directly.
+- **nginx also proxies raw TCP** for a couple of non-HTTP services, via a `stream` block in `nginx.conf` (not a separate ingress, just an extra path alongside their direct host bindings): pihole DNS (port 53) and samba (port 445, tcp only — no 139/NetBIOS).
 - **TLS**: Let's Encrypt wildcard cert for `toocels.duckdns.org` (+ `toocelsts.duckdns.org`), issued via DNS-01 (`nginx/renew-certs.sh`), which works without exposing anything to the internet. Renewal runs on a monthly systemd timer (`renew-certs.timer`, `Persistent=true` so a missed run — laptop off, etc. — catches up on next boot). This is the one piece of the stack that runs on the host instead of in a container.
 - **Data/state directories are bind-mounted locally** next to each compose file (e.g. `./vaultwarden_data`) and gitignored. Only compose files and non-secret static config (nginx conf, html) are tracked in git.
