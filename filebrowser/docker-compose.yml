@@ -3,8 +3,9 @@ services:
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
+    user: "${PUID}:${PGID}"
     # ports:
-    #   - "127.0.0.1:8080:80"
+    #   - ":8080:80"
     volumes:
       - ./data:/srv
       - ./database:/database
@@ -16,10 +17,12 @@ services:
   samba:
     image: dperson/samba
     container_name: samba
-    command: '-u "${SAMBA_USER};${SAMBA_PASSWORD}" -p -s "data;/share;yes;no;no;${SAMBA_USER};${SAMBA_USER};${SAMBA_USER}"'
-    ports:
-      - "445:445"
-    #   - "139:139"
+    environment:
+      - USERID=${PUID}
+      - GROUPID=${PGID}
+    command: '-u "${SAMBA_USER};${SAMBA_PASSWORD}" -p -s "data;/share;yes;no;no;${SAMBA_USER};;${SAMBA_USER}"'
+    # ports:
+    #   - "445:445"
     volumes:
       - ./data:/share
     restart: always
